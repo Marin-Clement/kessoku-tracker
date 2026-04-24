@@ -1,51 +1,131 @@
-# KessokuTracker 🎸
+# Kessoku Tracker
 
-![KessokuTracker Banner](.github/assets/banner.png)
+**A local-first guitar practice tracker.** Log sessions, climb the BPM, protect the wrist.
 
-**KessokuTracker** is a mobile-first guitar practice and progression tracker built with Next.js. Engineered with a clean, flat, and brutalist UI, it helps you log your daily guitar sessions, track your BPM improvements, manage physical strain (wrist & finger pain), and stay consistent on your musical journey.
+Built for guitarists who practice with intent — not for a specific song, but to become a better player overall.
 
-## Features ✨
+---
 
-- **Mobile First & PWA Ready**: Installable as a Progressive Web App on your phone so you can log your practice with your guitar directly on your lap.
-- **Session Logging**: Track the time you spend on `Warmup`, `Technique`, and `Songs`.
-- **BPM Tracker**: Log current BPM targets for your riffs and watch your speed grow over time via visual charts.
-- **Pain & Health Monitor**: Don't let injuries stop you. Keep an eye on wrist and finger strain over time to establish healthy practice schedules.
-- **Flat Brutalist UI**: Pure, high-contrast, distraction-free interface matching a musician's utility tool. No glassmorphism, no flashy gradients — just the data you need.
-- **i18n Ready**: Available in multiple languages.
-
-## Screenshots 📱
-
-*(Capture and drop your mobile screenshots in the `.github/assets/` folder with these names to make them appear here!)*
+## Screenshots
 
 <div align="center">
-  <img src=".github/assets/home.png" alt="Home Screen" width="200" />
-  <img src=".github/assets/riffs.png" alt="Riffs Screen" width="200" />
-  <img src=".github/assets/session.png" alt="Active Session Screen" width="200" />
-  <img src=".github/assets/stats.png" alt="Statistics Screen" width="200" />
+
+### Dashboard — streak, weekly goal, in-progress riffs
+<img src="public/screenshots/01-dashboard.png" alt="Dashboard" width="280" />
+
+### Riffs — tags, personal best, BPM progress
+<img src="public/screenshots/02-riffs.png" alt="Riffs list" width="280" />
+
+### Riff detail — BPM progression chart, ETA
+<img src="public/screenshots/03-riff-detail.png" alt="Riff detail" width="280" />
+
+### Session — 3-phase timer, metronome, tap tempo
+<img src="public/screenshots/05-session-active.png" alt="Active session" width="280" />
+
+### Stats — 30-day bars, pain chart, leaderboard
+<img src="public/screenshots/06-stats.png" alt="Stats" width="280" />
+
+### Settings — weekly goal, phases, BPM step, EN/FR
+<img src="public/screenshots/07-settings.png" alt="Settings" width="280" />
+
 </div>
 
-## Getting Started 🚀
+---
 
-First, run the development server:
+## Features
+
+**Practice tracking**
+- 3-phase session timer (Warmup / Technique / Songs) with configurable default durations
+- Screen wake-lock during active sessions — screen stays on with guitar on your lap
+- Keyboard shortcuts: `Space` pause, `←` / `→` switch phase
+
+**BPM system**
+- Log current BPM per riff during every session
+- Personal record (max BPM) tracked automatically with 🏆 indicator
+- BPM progression line chart with target reference line
+- ETA calculator based on historical rate of improvement
+- Configurable BPM step (±1, ±2, ±5, ±10)
+
+**Metronome**
+- Web Audio API — precise scheduling, no drift
+- Tap tempo (tap 2+ times → average interval)
+- Subdivisions: quarter / 8th / triplet / 16th
+- Time signature: 3/4, 4/4, 5/4, 6/4
+- Visual beat indicator with accent on beat 1
+- Mute toggle
+
+**Riff management**
+- Tags per riff (picking, legato, chords, sweep…) — shown as filter pills
+- Resource link per riff (Songsterr, YouTube timestamp, PDF) with direct "Let's play" button
+- Status: To do / In progress / Mastered
+
+**Dashboard intelligence**
+- Weekly practice goal with progress bar
+- "Time to revisit" — surfaces riffs not practiced in 4+ days
+- 90-day GitHub-style practice heatmap
+- Tendinitis alert: wrist pain ≥ 4/10 on 2 of last 3 sessions → red banner
+
+**End-of-session**
+- Pain diary: fingers + wrist (0–10) + mood + notes
+- Session insights screen: BPM gains, new PRs, phase breakdown
+
+**Stats**
+- 30-day bar chart, pain trend chart, 90-day heatmap
+- Riff leaderboard (closest to target)
+- Recent sessions with phase breakdown
+
+**i18n**
+- English / Français — switcher in the nav sidebar + Settings page
+- Cookie-persisted, switches without reload
+
+**Data**
+- Local-first: SQLite at `.data/kessoku.db` — no account, no cloud
+- JSON export / import backup
+- Full reset
+
+**PWA**
+- Installable via browser "Add to home screen" — works offline
+
+---
+
+## Tech stack
+
+| Layer | Choice |
+|-------|--------|
+| Framework | Next.js 16 (App Router, Turbopack) |
+| React | React 19 |
+| Styling | Tailwind CSS v4 |
+| Database | SQLite via `better-sqlite3` |
+| Charts | Recharts |
+| Icons | lucide-react |
+| Audio | Web Audio API (no dependencies) |
+
+---
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. The application works best if you open chrome devtools and simulate a mobile device (e.g., iPhone 14 Pro, Pixel 7) !
+Open [http://localhost:3000](http://localhost:3000). The DB is created automatically at `.data/kessoku.db` on first launch.
 
-## Architecture & Tech 🧰
+For the best experience open Chrome DevTools → device toolbar → iPhone 14 Pro, or install as a PWA.
 
-- **Framework:** Next.js (App Router)
-- **Styling:** Tailwind CSS V4 (Custom Flat/Brutalist theme variables)
-- **Icons:** `lucide-react`
-- **Charts:** `recharts` for practice, BPM, and health tracking
+```bash
+npm run build   # production build
+npm run lint    # ESLint
+```
+
+---
+
+## Data location
+
+All data is stored locally in `.data/kessoku.db` (SQLite, WAL mode). Back up via **Settings → Export backup** before reinstalling.
+
+---
 
 ## License
+
 MIT

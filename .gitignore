@@ -42,3 +42,13 @@ next-env.d.ts
 
 # database
 .data/
+
+# playwright
+playwright-report/
+test-results/
+playwright/.cache/
+
+# mcp
+.mcp/
+
+.playwright-mcp/
