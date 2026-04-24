@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0a0910;
+  --color-bg-elevated: #13111c;
+  --color-card: #181528;
+  --color-card-hover: #211c35;
+  --color-border: #2a2540;
+  --color-border-strong: #3a3455;
+  --color-muted: #8e869f;
+  --color-muted-strong: #b8afc9;
+  --color-fg: #f1ecff;
+
+  --color-primary: #ff4f86;
+  --color-primary-hover: #ff6a9a;
+  --color-primary-soft: #3a1028;
+
+  --color-accent: #a77dff;
+  --color-accent-soft: #2b1d4e;
+
+  --color-success: #35d19f;
+  --color-warning: #ffb547;
+  --color-danger: #ff5067;
+  --color-danger-soft: #3a1420;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+
+  --shadow-glow: none;
+}
+
+@layer base {
+  html,
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  ::selection {
+    background: var(--color-primary);
+    color: #0a0910;
+  }
+
+  /* Subtle dotted background */
+  body {
+    background-color: var(--color-bg);
+    background-image: none;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 0.5rem;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--color-border-strong);
+    border-radius: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .gradient-text {
+    color: var(--color-primary);
+  }
+
+  .glow-primary {
+    box-shadow: none;
+  }
+
+  @keyframes pulse-ring {
+    0% { transform: scale(0.95); opacity: 0.7; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0.7; }
+  }
+
+  .animate-pulse-ring {
+    animation: pulse-ring 2.2s ease-in-out infinite;
+  }
+
+  @keyframes metronome-flash {
+    0% { opacity: 0.2; }
+    5% { opacity: 1; }
+    100% { opacity: 0.2; }
+  }
+
+  .animate-metronome {
+    animation: metronome-flash 0.4s ease-out;
+  }
+}

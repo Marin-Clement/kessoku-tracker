@@ -1,0 +1,18 @@
+{
+  "name": "Kessoku Tracker",
+  "short_name": "Kessoku",
+  "description": "Guitar practice tracker — BPM progression, sessions, health.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0910",
+  "theme_color": "#0a0910",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
